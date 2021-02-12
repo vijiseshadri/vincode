@@ -1,0 +1,23 @@
+
+class Solution:
+    def binaryTreePaths(self, root: TreeNode) -> List[str]:
+        l = []
+        st = ""
+        def Path2Str(root:TreeNode,st):
+            if (root is not None):
+                st=st+str(root.val)
+                ast=ast+str(root.val)+","
+                if (root.left is None and root.right is None):
+                    l.append(st)
+                else:
+                    st =st+"->" 
+                
+                if(root.left is not None):
+                    Path2Str(root.left, st)
+          
+                if (root.right is not None):
+                    Path2Str(root.right, st)
+           
+            
+        Path2Str(root,st)
+        return l
