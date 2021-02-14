@@ -1,0 +1,48 @@
+class Solution:
+    def myAtoi(self, s: str) -> int:
+        len_s = len(s)
+        ret_num = 0
+        is_neg = False
+        i = 0
+        
+        #Read in and ignore any leading whitespace.
+        while (i < len_s and s[i] == ' '):
+            i = i + 1
+        
+        #Check if the next character (if not already at 
+        #the end of  the string) is '-' or '+'. 
+        #Read this  character in if it is either. 
+        #This determines if the final result is 
+        #negative or positive respectively.
+        #Assume the result is positive if neither is present.
+        if (i < len_s and (s[i] == '-' or s[i] == '+')):
+            is_neg=True if s[i] == '-' else False
+            i = i + 1
+       
+        #Read in next the characters until the next
+        #non-digit charcter or the end of the 
+        #input is reached. The rest of the string is ignored.
+        for j in range(i,len_s):
+            if (s[j].isnumeric()):
+                ret_num = (ret_num * 10) + int(s[j]) 
+            else:
+                break
+     
+    
+        ret_num=ret_num if is_neg == False else (-1*ret_num)
+        
+        
+     # If the integer is out of the 32-bit signed integer 
+     #range [-231, 231 - 1], then clamp the integer so that
+     #it remains in the range. Specifically, integers less 
+     #than -231 should be clamped to -231, and integers 
+     #greater than 231 - 1 should be clamped to 231 - 1.
+        
+        k = pow(2,31)   
+        if (ret_num < -k):
+            return -k
+        if (ret_num > k-1):
+            return k-1
+        
+        return ret_num
+        
