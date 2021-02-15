@@ -1,0 +1,20 @@
+class Solution:
+    def removeDuplicates(self, nums: List[int]) -> int:
+        if (len(nums) == 1):
+            return len(nums)
+        
+        firstPtr = 0
+        secondPtr = 1
+        
+        
+        while (secondPtr < len(nums)):
+            if (nums[firstPtr] == nums[secondPtr]):
+                secondPtr = secondPtr+1
+            else:
+                nums[firstPtr + 1] = nums[secondPtr]
+                firstPtr = firstPtr + 1
+                secondPtr = secondPtr + 1
+        
+                
+        
+        return len(nums[:(firstPtr+1)])
