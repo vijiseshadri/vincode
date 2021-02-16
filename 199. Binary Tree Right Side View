@@ -1,0 +1,36 @@
+class Solution:
+    def rightSideView(self, root: TreeNode) -> List[int]:
+        if (root is None):
+            return None
+
+        queue = []
+        right_view = []
+        level_order = 0
+        queue.append((root,level_order))
+
+        mapTable = {}
+        
+        while (len(queue) !=0):
+            node, order = queue.pop()
+            
+            if order in mapTable:
+                mapTable[order].insert(0, node.val)
+            else:
+                mapTable[order]=a
+            
+            
+            if (node.left is not None):
+                queue.append((node.left,order+1))
+            
+            if (node.right is not None):
+                queue.append((node.right, order+1))
+            
+        
+        for index, value in mapTable.items():        
+            level_len = len(value)
+            right_view.append(value[level_len-1]) 
+        
+                        
+                             
+        return right_view
+            
